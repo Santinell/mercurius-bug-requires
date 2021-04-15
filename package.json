@@ -1,0 +1,29 @@
+{
+  "name": "root",
+  "version": "0.1.26",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "coverage": "tap --coverage test/*.test.js",
+    "host": "PORT=3001 nodemon pkg/host",
+    "dict": "PORT=3002 nodemon pkg/dict",
+    "gateway": "PORT=3000 nodemon pkg/gateway",
+    "all": "concurrently -i 'npm:host' 'npm:dict' 'npm:gateway'"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.2",
+    "nodemon": "^2.0.7"
+  },
+  "workspaces": {
+    "packages": [
+      "pkg/*"
+    ]
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "nodemonConfig": {
+    "ext": "js",
+    "delay": "2500"
+  }
+}
